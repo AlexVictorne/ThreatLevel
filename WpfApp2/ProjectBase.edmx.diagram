@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7e3ab7f39fee47519d9c34a67436293b" Name="Diagram1" ZoomLevel="97">
+        <EntityTypeShape EntityType="ProjectBaseModel.bar_to_weak" Width="1.5" PointX="8" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectBaseModel.barrier" Width="1.5" PointX="0.75" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectBaseModel.def_to_objtype" Width="1.5" PointX="10.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectBaseModel.defenseobj" Width="1.5" PointX="8" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectBaseModel.defenseobj_types" Width="1.5" PointX="5.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectBaseModel.indust_object" Width="1.5" PointX="10.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectBaseModel.object" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectBaseModel.prot_to_bar" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectBaseModel.prot_to_obj" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectBaseModel.protect_mech" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectBaseModel.war_to_prot" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectBaseModel.warning_type" Width="1.5" PointX="2.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectBaseModel.warnings" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectBaseModel.weak_to_object" Width="1.5" PointX="8" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProjectBaseModel.weakness" Width="1.5" PointX="5.75" PointY="3.25" IsExpanded="true" />
+        <AssociationConnector Association="ProjectBaseModel.Bar_to_Weak_Barcode_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectBaseModel.Bar_to_Weak_Weakcode_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectBaseModel.Prot_to_Bar_Barcode_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectBaseModel.def_to_objtype_defcode_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectBaseModel.defenseobj_deftype_code_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectBaseModel.prot_to_obj_objcode_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectBaseModel.Weak_to_Object_Objcode_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectBaseModel.Prot_to_Bar_Protcode_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectBaseModel.prot_to_obj_protcode_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectBaseModel.protcode" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectBaseModel.warning" ManuallyRouted="false" />
+        <AssociationConnector Association="ProjectBaseModel.Weak_to_Object_Weakcode_fkey" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

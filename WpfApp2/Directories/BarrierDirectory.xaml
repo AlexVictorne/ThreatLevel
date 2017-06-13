@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="WpfApp2.BarrierDirectory"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp2"
+             mc:Ignorable="d" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="barrierViewSource" d:DesignSource="{d:DesignInstance {x:Type local:barrier}, CreateList=True}"/>
+        <CollectionViewSource x:Key="barrierbar_to_weakViewSource" Source="{Binding bar_to_weak, Source={StaticResource barrierViewSource}}"/>
+        <CollectionViewSource x:Key="barrierprot_to_barViewSource" Source="{Binding prot_to_bar, Source={StaticResource barrierViewSource}}"/>
+        <CollectionViewSource x:Key="weaknessViewSource" d:DesignSource="{d:DesignInstance {x:Type local:weakness}, CreateList=True}"/>
+        <CollectionViewSource x:Key="protect_mechViewSource" d:DesignSource="{d:DesignInstance {x:Type local:protect_mech}, CreateList=True}"/>
+
+    </UserControl.Resources>
+    <Grid DataContext="{StaticResource barrierViewSource}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.4*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <Button Name="buttonSave" Grid.Row="0" Grid.Column="0" Click="ButtonSave_Click" Command="{Binding Source={StaticResource weaknessViewSource}}">Сохранить</Button>
+        <Button Grid.Row="0" Grid.Column="1">Обновить</Button>
+        <DataGrid x:Name="barrierDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" 
+                    ItemsSource="{Binding}" 
+                    RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="1" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding name}" 
+                                    Header="Наименование" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="descColumn" Binding="{Binding description}" 
+                                    Header="Описание" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="3" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid x:Name="bar_to_weakDataGrid" AutoGenerateColumns="False" Grid.Column="0" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource barrierbar_to_weakViewSource}}" RowDetailsVisibilityMode="VisibleWhenSelected">
+                <DataGrid.Columns>
+                    <DataGridComboBoxColumn x:Name="weaknameColumn" 
+                                            SelectedValueBinding="{Binding weakcode}"
+                                            SelectedValuePath="id" DisplayMemberPath="name"
+                                            ItemsSource="{Binding Source={StaticResource weaknessViewSource}}" 
+                                            Header="Уязвимость" Width="SizeToHeader">
+                    </DataGridComboBoxColumn>
+                    <DataGridTextColumn x:Name="valueColumn" Binding="{Binding value}" Header="Значение" Width="SizeToHeader"/>
+
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid x:Name="prot_to_barDataGrid" AutoGenerateColumns="False" Grid.Column="1" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource barrierprot_to_barViewSource}}" RowDetailsVisibilityMode="VisibleWhenSelected">
+                <DataGrid.Columns>
+                    <DataGridComboBoxColumn x:Name="protectmechColumn" 
+                                            SelectedValueBinding="{Binding protcode}"
+                                            SelectedValuePath="id" DisplayMemberPath="name"
+                                            ItemsSource="{Binding Source={StaticResource protect_mechViewSource}}" 
+                                            Header="Механизм защиты" Width="SizeToHeader">
+                    </DataGridComboBoxColumn>
+                    <DataGridTextColumn x:Name="valueColumn1" Binding="{Binding value}" Header="Значение" Width="SizeToHeader"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>

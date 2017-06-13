@@ -1,0 +1,78 @@
+﻿<Window x:Class="WpfApp2.ProjectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="" Height="400" Width="400" Loaded="Window_Loaded">
+    <Window.Resources>
+        <CollectionViewSource x:Key="warningsViewSource" d:DesignSource="{d:DesignInstance {x:Type local:warnings}, CreateList=True}"/>
+        <CollectionViewSource x:Key="protect_mechViewSource" d:DesignSource="{d:DesignInstance {x:Type local:protect_mech}, CreateList=True}"/>
+        <CollectionViewSource x:Key="barrierViewSource" d:DesignSource="{d:DesignInstance {x:Type local:barrier}, CreateList=True}"/>
+        <CollectionViewSource x:Key="weaknessViewSource" d:DesignSource="{d:DesignInstance {x:Type local:weakness}, CreateList=True}"/>
+        <CollectionViewSource x:Key="objectViewSource" d:DesignSource="{d:DesignInstance {x:Type local:object}, CreateList=True}"/>
+        <CollectionViewSource x:Key="indust_objectViewSource" d:DesignSource="{d:DesignInstance {x:Type local:indust_object}, CreateList=True}"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource indust_objectViewSource}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.07*"/>
+            <RowDefinition Height="0.07*"/>
+            <RowDefinition Height="0.2*"/>
+            <RowDefinition Height="0.07*"/>
+            <RowDefinition Height="0.45*"/>
+            <RowDefinition Height="0.07*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" FontSize="16">Наименование</Label>
+        <TextBox Name="edtName" Grid.Column="1" Grid.Row="0" FontSize="16"/>
+        <Label Grid.Column="0" Grid.Row="1" FontSize="16">Тип</Label>
+
+        <Label Grid.Column="0" Grid.Row="2" FontSize="16">Описание</Label>
+        <TextBox Name ="edtDesc" Grid.Column="1" Grid.Row="2" FontSize="16"></TextBox>
+        <Label Grid.Column="0" Grid.Row="3" FontSize="16">Тип расчета</Label>
+        <Grid Grid.Column="1" Grid.Row="3" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+            <RadioButton Name="Type3" GroupName="rbTypeCalc" Grid.Column="0" Content="3 звена" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" />
+            <RadioButton Name="Type5" GroupName="rbTypeCalc" Grid.Column="1" Content="5 звеньев" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" />
+        </Grid>
+        <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Click="Button_Click" FontSize="20">Рассчитать</Button>
+        <Grid Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" DataContext="{StaticResource warningsViewSource}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="0.8*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.2*"/>
+                <ColumnDefinition Width="0.2*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Угрозы" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <ListBox SelectionMode="Multiple" Grid.Row="1" Grid.Column="0" Name="warningsSelector" DisplayMemberPath="name"  ItemsSource="{Binding Source={StaticResource warningsViewSource}}" />
+            <TextBlock Grid.Row="0" Grid.Column="1" Text="Мех. защиты" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <ListBox SelectionMode="Multiple" Grid.Row="1" Grid.Column="1" Name="protect_mechSelector" DisplayMemberPath="name"  ItemsSource="{Binding Source={StaticResource protect_mechViewSource}}"/>
+            <TextBlock Grid.Row="0" Grid.Column="2" Text="Барьеры" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <ListBox SelectionMode="Multiple" Grid.Row="1" Grid.Column="2" Name="barrierSelector" DisplayMemberPath="name"  ItemsSource="{Binding Source={StaticResource barrierViewSource}}"/>
+            <TextBlock Grid.Row="0" Grid.Column="3" Text="Уязвимости" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <ListBox SelectionMode="Multiple" Grid.Row="1" Grid.Column="3" Name="weaknessSelector" DisplayMemberPath="name"  ItemsSource="{Binding Source={StaticResource weaknessViewSource}}"/>
+            <TextBlock Grid.Row="0" Grid.Column="4" Text="Тип. объекты" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <ListBox SelectionMode="Multiple" Grid.Row="1" Grid.Column="4" Name="objectSelector" DisplayMemberPath="name"  ItemsSource="{Binding Source={StaticResource objectViewSource}}" />
+        </Grid>
+        <ComboBox x:Name="indust_objectComboBox" Grid.Column="1" DisplayMemberPath="name" ItemsSource="{Binding}" Grid.Row="1" SelectedValuePath="id">
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel/>
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>
+        </ComboBox>
+
+    </Grid>
+</Window>

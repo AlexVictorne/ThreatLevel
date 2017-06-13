@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="WpfApp2.IndustObjectDirectory"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp2"
+             mc:Ignorable="d"  
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="indust_objectViewSource" d:DesignSource="{d:DesignInstance {x:Type local:indust_object}, CreateList=True}"/>
+    </UserControl.Resources>
+    <Grid DataContext="{StaticResource indust_objectViewSource}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.8*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <Button Name="buttonSave" Grid.Row="0" Grid.Column="0" Click="ButtonSave_Click">Сохранить</Button>
+        <Button Grid.Row="0" Grid.Column="1">Обновить</Button>
+        <DataGrid x:Name="indust_objectDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" 
+                    ItemsSource="{Binding}" 
+                    RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="1" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding name}" 
+                                    Header="Наименование" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="descColumn" Binding="{Binding description}" 
+                                    Header="Описание" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="risk_benchmarkColumn" Binding="{Binding risk_benchmark}" 
+                                    Header="Тест риск" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

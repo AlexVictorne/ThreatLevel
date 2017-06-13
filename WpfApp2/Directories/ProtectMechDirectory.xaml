@@ -1,0 +1,99 @@
+﻿<UserControl x:Class="WpfApp2.ProtectMechDirectory"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp2"
+             mc:Ignorable="d" 
+             
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="protect_mechViewSource" d:DesignSource="{d:DesignInstance {x:Type local:protect_mech}, CreateList=True}"/>
+        <CollectionViewSource x:Key="protect_mechprot_to_barViewSource" Source="{Binding prot_to_bar, Source={StaticResource protect_mechViewSource}}"/>
+        <CollectionViewSource x:Key="protect_mechprot_to_objViewSource" Source="{Binding prot_to_obj, Source={StaticResource protect_mechViewSource}}"/>
+        <CollectionViewSource x:Key="protect_mechwar_to_protViewSource" Source="{Binding war_to_prot, Source={StaticResource protect_mechViewSource}}"/>
+        <CollectionViewSource x:Key="barrierViewSource" d:DesignSource="{d:DesignInstance {x:Type local:barrier}, CreateList=True}"/>
+        <CollectionViewSource x:Key="objectViewSource" d:DesignSource="{d:DesignInstance {x:Type local:object}, CreateList=True}"/>
+        <CollectionViewSource x:Key="warningsViewSource" d:DesignSource="{d:DesignInstance {x:Type local:warnings}, CreateList=True}"/>
+        <converter:EnumConverter xmlns:converter="clr-namespace:WpfApp2" x:Key="EnumConverter"/>
+        <ObjectDataProvider x:Key="EnumDataProvider" 
+                        MethodName="GetValues" 
+                        ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:mechtype"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+    <Grid DataContext="{StaticResource protect_mechViewSource}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.4*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <Button Name="buttonSave" Grid.Row="0" Grid.Column="0" Click="ButtonSave_Click">Сохранить</Button>
+        <Button Grid.Row="0" Grid.Column="1">Обновить</Button>
+        <DataGrid x:Name="protect_mechDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" 
+                    ItemsSource="{Binding}" 
+                    RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="1" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding name}" 
+                                    Header="Наименование" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="descColumn" Binding="{Binding description}" 
+                                    Header="Описание" Width="SizeToHeader"/>
+
+                <DataGridComboBoxColumn x:Name="TYPEColumn1"
+                                        ItemsSource="{Binding Source={StaticResource EnumDataProvider}}"
+                                        SelectedValueBinding="{Binding mech_type,
+                                                 Converter={StaticResource EnumConverter}, 
+                                                 ConverterParameter={x:Type local:mechtype}}"
+                                    Header="Тип" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="3" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="0.3*"/>
+            </Grid.ColumnDefinitions>
+
+            <DataGrid x:Name="prot_to_objDataGrid" AutoGenerateColumns="False" Grid.Column="1" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource protect_mechprot_to_objViewSource}}" RowDetailsVisibilityMode="VisibleWhenSelected">
+                <DataGrid.Columns>
+                    <DataGridComboBoxColumn x:Name="objectColumn" 
+                                            SelectedValueBinding="{Binding objcode}"
+                                            SelectedValuePath="id" DisplayMemberPath="name"
+                                            ItemsSource="{Binding Source={StaticResource objectViewSource}}" 
+                                            Header="Объект" Width="SizeToHeader">
+                    </DataGridComboBoxColumn>
+                    <DataGridTextColumn x:Name="valueColumn1" Binding="{Binding value}" Header="Значение" Width="SizeToHeader"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid x:Name="war_to_protDataGrid" AutoGenerateColumns="False" Grid.Column="2" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource protect_mechwar_to_protViewSource}}"  RowDetailsVisibilityMode="VisibleWhenSelected">
+                <DataGrid.Columns>
+                    <DataGridComboBoxColumn x:Name="warningsColumn" 
+                                            SelectedValueBinding="{Binding warcode}"
+                                            SelectedValuePath="id" DisplayMemberPath="name"
+                                            ItemsSource="{Binding Source={StaticResource warningsViewSource}}" 
+                                            Header="Угроза" Width="SizeToHeader">
+                    </DataGridComboBoxColumn>
+                    <DataGridTextColumn x:Name="valueColumn2" Binding="{Binding value}" Header="Значение" Width="SizeToHeader"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid x:Name="prot_to_barDataGrid" AutoGenerateColumns="False" Grid.Column="0"  EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource protect_mechprot_to_barViewSource}}" RowDetailsVisibilityMode="VisibleWhenSelected">
+                <DataGrid.Columns>
+                    <DataGridComboBoxColumn x:Name="barrierColumn" 
+                                            SelectedValueBinding="{Binding barcode}"
+                                            SelectedValuePath="id" DisplayMemberPath="name"
+                                            ItemsSource="{Binding Source={StaticResource barrierViewSource}}" 
+                                            Header="Барьер" Width="SizeToHeader">
+                    </DataGridComboBoxColumn>
+                    <DataGridTextColumn x:Name="valueColumn" Binding="{Binding value}" Header="Значение" Width="SizeToHeader"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>

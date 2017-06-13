@@ -1,0 +1,83 @@
+﻿<UserControl x:Class="WpfApp2.WarningsDirectory"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:WpfApp2"
+             mc:Ignorable="d" 
+             xmlns:System="clr-namespace:System;assembly=mscorlib"
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="warningsViewSource" d:DesignSource="{d:DesignInstance {x:Type local:warnings}, CreateList=True}"/>
+        <CollectionViewSource x:Key="warningswar_to_protViewSource" Source="{Binding war_to_prot, Source={StaticResource warningsViewSource}}"/>
+        <CollectionViewSource x:Key="protect_mechViewSource" d:DesignSource="{d:DesignInstance {x:Type local:protect_mech}, CreateList=True}"/>
+
+        <converter:EnumConverter xmlns:converter="clr-namespace:WpfApp2" x:Key="EnumConverter"/>
+        <ObjectDataProvider x:Key="EnumDataProviderClass" 
+                        MethodName="GetValues" 
+                        ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:dangerclass"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <ObjectDataProvider x:Key="EnumDataProviderType" 
+                        MethodName="GetValues" 
+                        ObjectType="{x:Type System:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:wartype"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </UserControl.Resources>
+    <Grid DataContext="{StaticResource warningsViewSource}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.8*"/>
+            <RowDefinition Height="0.4*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <Button Name="buttonSave" Grid.Row="0" Grid.Column="0" Click="ButtonSave_Click">Сохранить</Button>
+        <Button Grid.Row="0" Grid.Column="1">Обновить</Button>
+        <DataGrid x:Name="warningsDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" 
+                    ItemsSource="{Binding}" 
+                    RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="1" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding name}" 
+                                    Header="Наименование" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="descColumn" Binding="{Binding description}" 
+                                    Header="Описание" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="damage_costColumn" Binding="{Binding damage_cost}" 
+                                    Header="Повреждения" Width="SizeToHeader"/>
+
+                <DataGridComboBoxColumn x:Name="danclassColumn1"
+                                        ItemsSource="{Binding Source={StaticResource EnumDataProviderClass}}"
+                                        SelectedValueBinding="{Binding danger_class,
+                                                 Converter={StaticResource EnumConverter}, 
+                                                 ConverterParameter={x:Type local:dangerclass}}"
+                                    Header="Класс опасности" Width="SizeToHeader"/>
+                <DataGridComboBoxColumn x:Name="dantypeColumn1"
+                                        ItemsSource="{Binding Source={StaticResource EnumDataProviderType}}"
+                                        SelectedValueBinding="{Binding warning_type,
+                                                 Converter={StaticResource EnumConverter}, 
+                                                 ConverterParameter={x:Type local:wartype}}"
+                                    Header="Тип" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="3" Grid.ColumnSpan="2">
+            <DataGrid x:Name="war_to_protDataGrid" AutoGenerateColumns="False" Grid.ColumnSpan="2" EnableRowVirtualization="True" ItemsSource="{Binding Source={StaticResource warningswar_to_protViewSource}}" Grid.RowSpan="1" RowDetailsVisibilityMode="VisibleWhenSelected">
+                <DataGrid.Columns>
+                    <DataGridComboBoxColumn x:Name="protectmechColumn" 
+                                            SelectedValueBinding="{Binding protcode}"
+                                            SelectedValuePath="id" DisplayMemberPath="name"
+                                            ItemsSource="{Binding Source={StaticResource protect_mechViewSource}}" 
+                                            Header="Механизм защиты" Width="SizeToHeader">
+                    </DataGridComboBoxColumn>
+                    <DataGridTextColumn x:Name="valueColumn" Binding="{Binding value}" Header="Значение" Width="SizeToHeader"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>

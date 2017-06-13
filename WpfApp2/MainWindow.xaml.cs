@@ -23,6 +23,7 @@ namespace WpfApp2
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
         }
     }
 }

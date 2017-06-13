@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="WpfApp2.WarningTypeDirectory"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp2"
+             mc:Ignorable="d"  
+             Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="warning_typeViewSource" d:DesignSource="{d:DesignInstance {x:Type local:warning_type}, CreateList=True}"/>
+    </UserControl.Resources>
+    <Grid DataContext="{StaticResource warning_typeViewSource}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.8*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <Button Name="buttonSave" Grid.Row="0" Grid.Column="0" Click="ButtonSave_Click">Сохранить</Button>
+        <Button Grid.Row="0" Grid.Column="1">Обновить</Button>
+        <DataGrid x:Name="warning_typeDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" 
+                    ItemsSource="{Binding}" 
+                    RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="1" Grid.ColumnSpan="2">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding name}" 
+                                    Header="Наименование" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

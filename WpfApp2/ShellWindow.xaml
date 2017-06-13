@@ -1,0 +1,50 @@
+﻿<Window x:Class="WpfApp2.DocWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+        xmlns:local="clr-namespace:WpfApp2"
+        mc:Ignorable="d"
+        Title="">
+    <Grid x:Name="LayoutRoot">
+        <Menu Grid.Row="0">
+            <MenuItem Name="Graph" Header="Проект">
+                <MenuItem Header="Создать" Command="{Binding CreateNewProject}" CommandParameter="{Binding ElementName=DockingManager}"/>
+                <MenuItem Header="Загрузить" Command="{Binding LoadProject}" CommandParameter="{Binding ElementName=DockingManager}"/>
+                <MenuItem Header="Просмотр проектов" Command="{Binding OpenProjectsView}" CommandParameter="{Binding ElementName=DockingManager}"/>
+            </MenuItem>
+            <MenuItem Name="Docs" Header="Справочники">
+                <MenuItem Header="Угрозы" Command="{Binding OpenWarningsDirectory}" CommandParameter="{Binding ElementName=DockingManager}"/>
+                <MenuItem Header="Механизмы защиты" Command="{Binding OpenProtectMechDirectory}" CommandParameter="{Binding ElementName=DockingManager}"/>
+                <MenuItem Header="Барьеры" Command="{Binding OpenBarrierDirectory}" CommandParameter="{Binding ElementName=DockingManager}"/>
+                <MenuItem Header="Уязвимости" Command="{Binding OpenWeaknessDirectory}" CommandParameter="{Binding ElementName=DockingManager}"/>
+                <MenuItem Header="Типовые объекты предприятия" Command="{Binding OpenIndustObjectDirectory}" CommandParameter="{Binding ElementName=DockingManager}"/>
+                <MenuItem Header="Объекты" Command="{Binding OpenObjectDirectory}" CommandParameter="{Binding ElementName=DockingManager}"/>
+                <MenuItem Header="Типы угроз" Command="{Binding OpenWarningTypeDirectory}" CommandParameter="{Binding ElementName=DockingManager}"/>
+            </MenuItem>
+        </Menu>
+        <xcad:DockingManager x:Name="DockingManager" Grid.Row="1" Margin="10,20,10,10"
+                             VerticalContentAlignment="Stretch"
+                             HorizontalContentAlignment="Stretch">
+            <xcad:DockingManager.Theme>
+                <xcad:GenericTheme />
+            </xcad:DockingManager.Theme>
+            <xcad:DockingManager.DocumentHeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Title}" TextTrimming="CharacterEllipsis" />
+                </DataTemplate>
+            </xcad:DockingManager.DocumentHeaderTemplate>
+            <xcad:LayoutRoot>
+                <xcad:LayoutPanel Orientation="Horizontal">
+                    <xcad:LayoutDocumentPaneGroup>
+                        <xcad:LayoutDocumentPane x:Name="LayoutDocumentPane" />
+                    </xcad:LayoutDocumentPaneGroup>
+                    <xcad:LayoutAnchorablePaneGroup DockWidth="150">
+                        <xcad:LayoutAnchorablePane />
+                    </xcad:LayoutAnchorablePaneGroup>
+                </xcad:LayoutPanel>
+            </xcad:LayoutRoot>
+        </xcad:DockingManager>
+    </Grid>
+</Window>

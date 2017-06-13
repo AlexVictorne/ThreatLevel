@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="WpfApp2.GraphView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WpfApp2"
+             xmlns:gv="clr-namespace:Microsoft.Msagl.GraphViewerGdi;assembly=Microsoft.Msagl.GraphViewerGDI"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.9*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.5*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Grid.Row="0" Click="Button_Click">СОХРАНИТЬ</Button>
+            <Button Grid.Column="1" Grid.Row="0" Click="Button_Click_1" >РЕДАКТИРОВАТЬ</Button>
+        </Grid>
+        <WindowsFormsHost Grid.Column="0" Grid.Row="1" Name="windowsFormsHost1" Loaded="WindowsFormsHost1_Loaded">
+            <gv:GViewer x:Name="ggViewer"></gv:GViewer>
+        </WindowsFormsHost>
+        <Grid Grid.Column="1" Grid.Row="0" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.25*"/>
+                <ColumnDefinition Width="0.25*"/>
+                <ColumnDefinition Width="0.25*"/>
+                <ColumnDefinition Width="0.25*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.25*"/>
+                <RowDefinition Height="0.25*"/>
+                <RowDefinition Height="0.25*"/>
+                <RowDefinition Height="0.25*"/>
+            </Grid.RowDefinitions>
+            <DataGrid IsReadOnly="True" Name="dg1" ItemsSource="{Binding}" Grid.Column="0" Grid.Row="0" HeadersVisibility="None" ColumnWidth="*"></DataGrid>
+            <DataGrid IsReadOnly="True" Name="dg2" ItemsSource="{Binding}" Grid.Column="1" Grid.Row="0" HeadersVisibility="None" ColumnWidth="*"></DataGrid>
+            <DataGrid IsReadOnly="True" Name="dg3" ItemsSource="{Binding}" Grid.Column="2" Grid.Row="0" HeadersVisibility="None" ColumnWidth="*"></DataGrid>
+            <DataGrid IsReadOnly="True" Name="dg4" ItemsSource="{Binding}" Grid.Column="3" Grid.Row="0" HeadersVisibility="None" ColumnWidth="*"></DataGrid>
+
+            <DataGrid IsReadOnly="True" Name="dg5" ItemsSource="{Binding}" Grid.Column="0" Grid.Row="1" HeadersVisibility="None" ColumnWidth="*"></DataGrid>
+            <DataGrid IsReadOnly="True" Name="dg6" ItemsSource="{Binding}" Grid.Column="1" Grid.Row="1" HeadersVisibility="None" ColumnWidth="*"></DataGrid>
+            <DataGrid IsReadOnly="True" Name="dg7" ItemsSource="{Binding}" Grid.Column="2" Grid.Row="1" HeadersVisibility="None" ColumnWidth="*"></DataGrid>
+            <DataGrid IsReadOnly="True" Name="dg11" ItemsSource="{Binding}" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="2" HeadersVisibility="None" ColumnWidth="*"></DataGrid>
+            <StackPanel Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="4">
+                <Label>РЕЗУЛЬТАТ</Label>
+                <Label Name="result_label"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

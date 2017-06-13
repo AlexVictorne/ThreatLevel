@@ -1,0 +1,905 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ProjectBaseModel" Provider="Npgsql" ProviderManifestToken="9.3.3" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="bar_to_weak">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="barcode" Type="int4" Nullable="false" />
+          <Property Name="weakcode" Type="int4" Nullable="false" />
+          <Property Name="value" Type="float8" />
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="barrier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="bpchar" MaxLength="150" Nullable="false" />
+          <Property Name="description" Type="text" />
+        </EntityType>
+        <EntityType Name="def_to_objtype">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="defcode" Type="int4" />
+          <Property Name="paramcode" Type="int4" />
+          <Property Name="paramtype" Type="int4" />
+        </EntityType>
+        <EntityType Name="defenseobj">
+          <Key>
+            <PropertyRef Name="defcode" />
+          </Key>
+          <Property Name="defcode" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="bpchar" MaxLength="150" />
+          <Property Name="deftype_code" Type="int4" />
+        </EntityType>
+        <EntityType Name="defenseobj_types">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="bpchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="indust_object">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="bpchar" MaxLength="155" />
+          <Property Name="description" Type="bpchar" MaxLength="155" />
+          <Property Name="risk_benchmark" Type="float8" Nullable="false" />
+        </EntityType>
+        <EntityType Name="object">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="bpchar" MaxLength="150" Nullable="false" />
+          <Property Name="desciption" Type="text" />
+          <Property Name="critical_importance" Type="int4" />
+        </EntityType>
+        <EntityType Name="prot_to_bar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="barcode" Type="int4" Nullable="false" />
+          <Property Name="protcode" Type="int4" Nullable="false" />
+          <Property Name="value" Type="float8" />
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="prot_to_obj">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="objcode" Type="int4" Nullable="false" />
+          <Property Name="protcode" Type="int4" Nullable="false" />
+          <Property Name="value" Type="float8" />
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="protect_mech">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="bpchar" MaxLength="150" Nullable="false" />
+          <Property Name="description" Type="text" />
+          <Property Name="mech_type" Type="int4" />
+        </EntityType>
+        <EntityType Name="war_to_prot">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="warcode" Type="int4" Nullable="false" />
+          <Property Name="protcode" Type="int4" Nullable="false" />
+          <Property Name="value" Type="float8" />
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="warning_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="bpchar" MaxLength="155" />
+        </EntityType>
+        <EntityType Name="warnings">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="bpchar" MaxLength="150" Nullable="false" />
+          <Property Name="damage_cost" Type="float8" />
+          <Property Name="description" Type="text" />
+          <Property Name="warning_type" Type="int4" />
+          <Property Name="danger_class" Type="int4" />
+        </EntityType>
+        <EntityType Name="weak_to_object">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="objcode" Type="int4" Nullable="false" />
+          <Property Name="weakcode" Type="int4" Nullable="false" />
+          <Property Name="value" Type="float8" />
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="weakness">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="bpchar" MaxLength="150" Nullable="false" />
+          <Property Name="description" Type="text" />
+        </EntityType>
+        <Association Name="Bar_to_Weak_Barcode_fkey">
+          <End Role="barrier" Type="Self.barrier" Multiplicity="1" />
+          <End Role="bar_to_weak" Type="Self.bar_to_weak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="barrier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bar_to_weak">
+              <PropertyRef Name="barcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Bar_to_Weak_Weakcode_fkey">
+          <End Role="weakness" Type="Self.weakness" Multiplicity="1" />
+          <End Role="bar_to_weak" Type="Self.bar_to_weak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="weakness">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bar_to_weak">
+              <PropertyRef Name="weakcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="def_to_objtype_defcode_fkey">
+          <End Role="defenseobj" Type="Self.defenseobj" Multiplicity="0..1" />
+          <End Role="def_to_objtype" Type="Self.def_to_objtype" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="defenseobj">
+              <PropertyRef Name="defcode" />
+            </Principal>
+            <Dependent Role="def_to_objtype">
+              <PropertyRef Name="defcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="defenseobj_deftype_code_fkey">
+          <End Role="defenseobj_types" Type="Self.defenseobj_types" Multiplicity="0..1" />
+          <End Role="defenseobj" Type="Self.defenseobj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="defenseobj_types">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="defenseobj">
+              <PropertyRef Name="deftype_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Prot_to_Bar_Barcode_fkey">
+          <End Role="barrier" Type="Self.barrier" Multiplicity="1" />
+          <End Role="prot_to_bar" Type="Self.prot_to_bar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="barrier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="prot_to_bar">
+              <PropertyRef Name="barcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Prot_to_Bar_Protcode_fkey">
+          <End Role="protect_mech" Type="Self.protect_mech" Multiplicity="1" />
+          <End Role="prot_to_bar" Type="Self.prot_to_bar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="protect_mech">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="prot_to_bar">
+              <PropertyRef Name="protcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="prot_to_obj_objcode_fkey">
+          <End Role="object" Type="Self.object" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="prot_to_obj" Type="Self.prot_to_obj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="object">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="prot_to_obj">
+              <PropertyRef Name="objcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="prot_to_obj_protcode_fkey">
+          <End Role="protect_mech" Type="Self.protect_mech" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="prot_to_obj" Type="Self.prot_to_obj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="protect_mech">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="prot_to_obj">
+              <PropertyRef Name="protcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="protcode">
+          <End Role="protect_mech" Type="Self.protect_mech" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="war_to_prot" Type="Self.war_to_prot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="protect_mech">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="war_to_prot">
+              <PropertyRef Name="protcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="warning">
+          <End Role="warnings" Type="Self.warnings" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="war_to_prot" Type="Self.war_to_prot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="warnings">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="war_to_prot">
+              <PropertyRef Name="warcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Weak_to_Object_Objcode_fkey">
+          <End Role="object" Type="Self.object" Multiplicity="1" />
+          <End Role="weak_to_object" Type="Self.weak_to_object" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="object">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="weak_to_object">
+              <PropertyRef Name="objcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Weak_to_Object_Weakcode_fkey">
+          <End Role="weakness" Type="Self.weakness" Multiplicity="1" />
+          <End Role="weak_to_object" Type="Self.weak_to_object" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="weakness">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="weak_to_object">
+              <PropertyRef Name="weakcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ProjectBaseModelContainer">
+          <EntitySet Name="bar_to_weak" EntityType="Self.bar_to_weak" Schema="public" store:Type="Tables" />
+          <EntitySet Name="barrier" EntityType="Self.barrier" Schema="public" store:Type="Tables" />
+          <EntitySet Name="def_to_objtype" EntityType="Self.def_to_objtype" Schema="public" store:Type="Tables" />
+          <EntitySet Name="defenseobj" EntityType="Self.defenseobj" Schema="public" store:Type="Tables" />
+          <EntitySet Name="defenseobj_types" EntityType="Self.defenseobj_types" Schema="public" store:Type="Tables" />
+          <EntitySet Name="indust_object" EntityType="Self.indust_object" Schema="public" store:Type="Tables" />
+          <EntitySet Name="object" EntityType="Self.object" Schema="public" store:Type="Tables" />
+          <EntitySet Name="prot_to_bar" EntityType="Self.prot_to_bar" Schema="public" store:Type="Tables" />
+          <EntitySet Name="prot_to_obj" EntityType="Self.prot_to_obj" Schema="public" store:Type="Tables" />
+          <EntitySet Name="protect_mech" EntityType="Self.protect_mech" Schema="public" store:Type="Tables" />
+          <EntitySet Name="war_to_prot" EntityType="Self.war_to_prot" Schema="public" store:Type="Tables" />
+          <EntitySet Name="warning_type" EntityType="Self.warning_type" Schema="public" store:Type="Tables" />
+          <EntitySet Name="warnings" EntityType="Self.warnings" Schema="public" store:Type="Tables" />
+          <EntitySet Name="weak_to_object" EntityType="Self.weak_to_object" Schema="public" store:Type="Tables" />
+          <EntitySet Name="weakness" EntityType="Self.weakness" Schema="public" store:Type="Tables" />
+          <AssociationSet Name="Bar_to_Weak_Barcode_fkey" Association="Self.Bar_to_Weak_Barcode_fkey">
+            <End Role="barrier" EntitySet="barrier" />
+            <End Role="bar_to_weak" EntitySet="bar_to_weak" />
+          </AssociationSet>
+          <AssociationSet Name="Bar_to_Weak_Weakcode_fkey" Association="Self.Bar_to_Weak_Weakcode_fkey">
+            <End Role="weakness" EntitySet="weakness" />
+            <End Role="bar_to_weak" EntitySet="bar_to_weak" />
+          </AssociationSet>
+          <AssociationSet Name="def_to_objtype_defcode_fkey" Association="Self.def_to_objtype_defcode_fkey">
+            <End Role="defenseobj" EntitySet="defenseobj" />
+            <End Role="def_to_objtype" EntitySet="def_to_objtype" />
+          </AssociationSet>
+          <AssociationSet Name="defenseobj_deftype_code_fkey" Association="Self.defenseobj_deftype_code_fkey">
+            <End Role="defenseobj_types" EntitySet="defenseobj_types" />
+            <End Role="defenseobj" EntitySet="defenseobj" />
+          </AssociationSet>
+          <AssociationSet Name="Prot_to_Bar_Barcode_fkey" Association="Self.Prot_to_Bar_Barcode_fkey">
+            <End Role="barrier" EntitySet="barrier" />
+            <End Role="prot_to_bar" EntitySet="prot_to_bar" />
+          </AssociationSet>
+          <AssociationSet Name="Prot_to_Bar_Protcode_fkey" Association="Self.Prot_to_Bar_Protcode_fkey">
+            <End Role="protect_mech" EntitySet="protect_mech" />
+            <End Role="prot_to_bar" EntitySet="prot_to_bar" />
+          </AssociationSet>
+          <AssociationSet Name="prot_to_obj_objcode_fkey" Association="Self.prot_to_obj_objcode_fkey">
+            <End Role="object" EntitySet="object" />
+            <End Role="prot_to_obj" EntitySet="prot_to_obj" />
+          </AssociationSet>
+          <AssociationSet Name="prot_to_obj_protcode_fkey" Association="Self.prot_to_obj_protcode_fkey">
+            <End Role="protect_mech" EntitySet="protect_mech" />
+            <End Role="prot_to_obj" EntitySet="prot_to_obj" />
+          </AssociationSet>
+          <AssociationSet Name="protcode" Association="Self.protcode">
+            <End Role="protect_mech" EntitySet="protect_mech" />
+            <End Role="war_to_prot" EntitySet="war_to_prot" />
+          </AssociationSet>
+          <AssociationSet Name="warning" Association="Self.warning">
+            <End Role="warnings" EntitySet="warnings" />
+            <End Role="war_to_prot" EntitySet="war_to_prot" />
+          </AssociationSet>
+          <AssociationSet Name="Weak_to_Object_Objcode_fkey" Association="Self.Weak_to_Object_Objcode_fkey">
+            <End Role="object" EntitySet="object" />
+            <End Role="weak_to_object" EntitySet="weak_to_object" />
+          </AssociationSet>
+          <AssociationSet Name="Weak_to_Object_Weakcode_fkey" Association="Self.Weak_to_Object_Weakcode_fkey">
+            <End Role="weakness" EntitySet="weakness" />
+            <End Role="weak_to_object" EntitySet="weak_to_object" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProjectBaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="bar_to_weak">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="barcode" Type="Int32" Nullable="false" />
+          <Property Name="weakcode" Type="Int32" Nullable="false" />
+          <Property Name="value" Type="Double" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="barrier" Relationship="Self.Bar_to_Weak_Barcode_fkey" FromRole="bar_to_weak" ToRole="barrier" />
+          <NavigationProperty Name="weakness" Relationship="Self.Bar_to_Weak_Weakcode_fkey" FromRole="bar_to_weak" ToRole="weakness" />
+        </EntityType>
+        <EntityType Name="barrier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="bar_to_weak" Relationship="Self.Bar_to_Weak_Barcode_fkey" FromRole="barrier" ToRole="bar_to_weak" />
+          <NavigationProperty Name="prot_to_bar" Relationship="Self.Prot_to_Bar_Barcode_fkey" FromRole="barrier" ToRole="prot_to_bar" />
+        </EntityType>
+        <EntityType Name="def_to_objtype">
+          <Key>
+            <PropertyRef Name="code" />
+          </Key>
+          <Property Name="code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="defcode" Type="Int32" />
+          <Property Name="paramcode" Type="Int32" />
+          <Property Name="paramtype" Type="Int32" />
+          <NavigationProperty Name="defenseobj" Relationship="Self.def_to_objtype_defcode_fkey" FromRole="def_to_objtype" ToRole="defenseobj" />
+        </EntityType>
+        <EntityType Name="defenseobj">
+          <Key>
+            <PropertyRef Name="defcode" />
+          </Key>
+          <Property Name="defcode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+          <Property Name="deftype_code" Type="Int32" />
+          <NavigationProperty Name="def_to_objtype" Relationship="Self.def_to_objtype_defcode_fkey" FromRole="defenseobj" ToRole="def_to_objtype" />
+          <NavigationProperty Name="defenseobj_types" Relationship="Self.defenseobj_deftype_code_fkey" FromRole="defenseobj" ToRole="defenseobj_types" />
+        </EntityType>
+        <EntityType Name="defenseobj_types">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="defenseobj" Relationship="Self.defenseobj_deftype_code_fkey" FromRole="defenseobj_types" ToRole="defenseobj" />
+        </EntityType>
+        <EntityType Name="indust_object">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="155" FixedLength="true" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="155" FixedLength="true" Unicode="true" />
+          <Property Name="risk_benchmark" Type="Double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="object">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="desciption" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="critical_importance" Type="Int32" />
+          <NavigationProperty Name="prot_to_obj" Relationship="Self.prot_to_obj_objcode_fkey" FromRole="object" ToRole="prot_to_obj" />
+          <NavigationProperty Name="weak_to_object" Relationship="Self.Weak_to_Object_Objcode_fkey" FromRole="object" ToRole="weak_to_object" />
+        </EntityType>
+        <EntityType Name="prot_to_bar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="barcode" Type="Int32" Nullable="false" />
+          <Property Name="protcode" Type="Int32" Nullable="false" />
+          <Property Name="value" Type="Double" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="barrier" Relationship="Self.Prot_to_Bar_Barcode_fkey" FromRole="prot_to_bar" ToRole="barrier" />
+          <NavigationProperty Name="protect_mech" Relationship="Self.Prot_to_Bar_Protcode_fkey" FromRole="prot_to_bar" ToRole="protect_mech" />
+        </EntityType>
+        <EntityType Name="prot_to_obj">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="objcode" Type="Int32" Nullable="false" />
+          <Property Name="protcode" Type="Int32" Nullable="false" />
+          <Property Name="value" Type="Double" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="object" Relationship="Self.prot_to_obj_objcode_fkey" FromRole="prot_to_obj" ToRole="object" />
+          <NavigationProperty Name="protect_mech" Relationship="Self.prot_to_obj_protcode_fkey" FromRole="prot_to_obj" ToRole="protect_mech" />
+        </EntityType>
+        <EntityType Name="protect_mech">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="mech_type" Type="Int32" />
+          <NavigationProperty Name="prot_to_bar" Relationship="Self.Prot_to_Bar_Protcode_fkey" FromRole="protect_mech" ToRole="prot_to_bar" />
+          <NavigationProperty Name="prot_to_obj" Relationship="Self.prot_to_obj_protcode_fkey" FromRole="protect_mech" ToRole="prot_to_obj" />
+          <NavigationProperty Name="war_to_prot" Relationship="Self.protcode" FromRole="protect_mech" ToRole="war_to_prot" />
+        </EntityType>
+        <EntityType Name="war_to_prot">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="warcode" Type="Int32" Nullable="false" />
+          <Property Name="protcode" Type="Int32" Nullable="false" />
+          <Property Name="value" Type="Double" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="protect_mech" Relationship="Self.protcode" FromRole="war_to_prot" ToRole="protect_mech" />
+          <NavigationProperty Name="warnings" Relationship="Self.warning" FromRole="war_to_prot" ToRole="warnings" />
+        </EntityType>
+        <EntityType Name="warning_type">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="155" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="warnings">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="damage_cost" Type="Double" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="warning_type" Type="Int32" />
+          <Property Name="danger_class" Type="Int32" />
+          <NavigationProperty Name="war_to_prot" Relationship="Self.warning" FromRole="warnings" ToRole="war_to_prot" />
+        </EntityType>
+        <EntityType Name="weak_to_object">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="objcode" Type="Int32" Nullable="false" />
+          <Property Name="weakcode" Type="Int32" Nullable="false" />
+          <Property Name="value" Type="Double" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="object" Relationship="Self.Weak_to_Object_Objcode_fkey" FromRole="weak_to_object" ToRole="object" />
+          <NavigationProperty Name="weakness" Relationship="Self.Weak_to_Object_Weakcode_fkey" FromRole="weak_to_object" ToRole="weakness" />
+        </EntityType>
+        <EntityType Name="weakness">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="150" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="bar_to_weak" Relationship="Self.Bar_to_Weak_Weakcode_fkey" FromRole="weakness" ToRole="bar_to_weak" />
+          <NavigationProperty Name="weak_to_object" Relationship="Self.Weak_to_Object_Weakcode_fkey" FromRole="weakness" ToRole="weak_to_object" />
+        </EntityType>
+        <Association Name="Bar_to_Weak_Barcode_fkey">
+          <End Role="barrier" Type="Self.barrier" Multiplicity="1" />
+          <End Role="bar_to_weak" Type="Self.bar_to_weak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="barrier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bar_to_weak">
+              <PropertyRef Name="barcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Bar_to_Weak_Weakcode_fkey">
+          <End Role="weakness" Type="Self.weakness" Multiplicity="1" />
+          <End Role="bar_to_weak" Type="Self.bar_to_weak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="weakness">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bar_to_weak">
+              <PropertyRef Name="weakcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Prot_to_Bar_Barcode_fkey">
+          <End Role="barrier" Type="Self.barrier" Multiplicity="1" />
+          <End Role="prot_to_bar" Type="Self.prot_to_bar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="barrier">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="prot_to_bar">
+              <PropertyRef Name="barcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="def_to_objtype_defcode_fkey">
+          <End Role="defenseobj" Type="Self.defenseobj" Multiplicity="0..1" />
+          <End Role="def_to_objtype" Type="Self.def_to_objtype" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="defenseobj">
+              <PropertyRef Name="defcode" />
+            </Principal>
+            <Dependent Role="def_to_objtype">
+              <PropertyRef Name="defcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="defenseobj_deftype_code_fkey">
+          <End Role="defenseobj_types" Type="Self.defenseobj_types" Multiplicity="0..1" />
+          <End Role="defenseobj" Type="Self.defenseobj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="defenseobj_types">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="defenseobj">
+              <PropertyRef Name="deftype_code" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="prot_to_obj_objcode_fkey">
+          <End Role="object" Type="Self.object" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="prot_to_obj" Type="Self.prot_to_obj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="object">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="prot_to_obj">
+              <PropertyRef Name="objcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Weak_to_Object_Objcode_fkey">
+          <End Role="object" Type="Self.object" Multiplicity="1" />
+          <End Role="weak_to_object" Type="Self.weak_to_object" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="object">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="weak_to_object">
+              <PropertyRef Name="objcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Prot_to_Bar_Protcode_fkey">
+          <End Role="protect_mech" Type="Self.protect_mech" Multiplicity="1" />
+          <End Role="prot_to_bar" Type="Self.prot_to_bar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="protect_mech">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="prot_to_bar">
+              <PropertyRef Name="protcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="prot_to_obj_protcode_fkey">
+          <End Role="protect_mech" Type="Self.protect_mech" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="prot_to_obj" Type="Self.prot_to_obj" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="protect_mech">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="prot_to_obj">
+              <PropertyRef Name="protcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="protcode">
+          <End Role="protect_mech" Type="Self.protect_mech" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="war_to_prot" Type="Self.war_to_prot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="protect_mech">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="war_to_prot">
+              <PropertyRef Name="protcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="warning">
+          <End Role="warnings" Type="Self.warnings" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="war_to_prot" Type="Self.war_to_prot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="warnings">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="war_to_prot">
+              <PropertyRef Name="warcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Weak_to_Object_Weakcode_fkey">
+          <End Role="weakness" Type="Self.weakness" Multiplicity="1" />
+          <End Role="weak_to_object" Type="Self.weak_to_object" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="weakness">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="weak_to_object">
+              <PropertyRef Name="weakcode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProjectBaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bar_to_weak" EntityType="Self.bar_to_weak" />
+          <EntitySet Name="barrier" EntityType="Self.barrier" />
+          <EntitySet Name="def_to_objtype" EntityType="Self.def_to_objtype" />
+          <EntitySet Name="defenseobj" EntityType="Self.defenseobj" />
+          <EntitySet Name="defenseobj_types" EntityType="Self.defenseobj_types" />
+          <EntitySet Name="indust_object" EntityType="Self.indust_object" />
+          <EntitySet Name="object" EntityType="Self.object" />
+          <EntitySet Name="prot_to_bar" EntityType="Self.prot_to_bar" />
+          <EntitySet Name="prot_to_obj" EntityType="Self.prot_to_obj" />
+          <EntitySet Name="protect_mech" EntityType="Self.protect_mech" />
+          <EntitySet Name="war_to_prot" EntityType="Self.war_to_prot" />
+          <EntitySet Name="warning_type" EntityType="Self.warning_type" />
+          <EntitySet Name="warnings" EntityType="Self.warnings" />
+          <EntitySet Name="weak_to_object" EntityType="Self.weak_to_object" />
+          <EntitySet Name="weakness" EntityType="Self.weakness" />
+          <AssociationSet Name="Bar_to_Weak_Barcode_fkey" Association="Self.Bar_to_Weak_Barcode_fkey">
+            <End Role="barrier" EntitySet="barrier" />
+            <End Role="bar_to_weak" EntitySet="bar_to_weak" />
+          </AssociationSet>
+          <AssociationSet Name="Bar_to_Weak_Weakcode_fkey" Association="Self.Bar_to_Weak_Weakcode_fkey">
+            <End Role="weakness" EntitySet="weakness" />
+            <End Role="bar_to_weak" EntitySet="bar_to_weak" />
+          </AssociationSet>
+          <AssociationSet Name="Prot_to_Bar_Barcode_fkey" Association="Self.Prot_to_Bar_Barcode_fkey">
+            <End Role="barrier" EntitySet="barrier" />
+            <End Role="prot_to_bar" EntitySet="prot_to_bar" />
+          </AssociationSet>
+          <AssociationSet Name="def_to_objtype_defcode_fkey" Association="Self.def_to_objtype_defcode_fkey">
+            <End Role="defenseobj" EntitySet="defenseobj" />
+            <End Role="def_to_objtype" EntitySet="def_to_objtype" />
+          </AssociationSet>
+          <AssociationSet Name="defenseobj_deftype_code_fkey" Association="Self.defenseobj_deftype_code_fkey">
+            <End Role="defenseobj_types" EntitySet="defenseobj_types" />
+            <End Role="defenseobj" EntitySet="defenseobj" />
+          </AssociationSet>
+          <AssociationSet Name="prot_to_obj_objcode_fkey" Association="Self.prot_to_obj_objcode_fkey">
+            <End Role="object" EntitySet="object" />
+            <End Role="prot_to_obj" EntitySet="prot_to_obj" />
+          </AssociationSet>
+          <AssociationSet Name="Weak_to_Object_Objcode_fkey" Association="Self.Weak_to_Object_Objcode_fkey">
+            <End Role="object" EntitySet="object" />
+            <End Role="weak_to_object" EntitySet="weak_to_object" />
+          </AssociationSet>
+          <AssociationSet Name="Prot_to_Bar_Protcode_fkey" Association="Self.Prot_to_Bar_Protcode_fkey">
+            <End Role="protect_mech" EntitySet="protect_mech" />
+            <End Role="prot_to_bar" EntitySet="prot_to_bar" />
+          </AssociationSet>
+          <AssociationSet Name="prot_to_obj_protcode_fkey" Association="Self.prot_to_obj_protcode_fkey">
+            <End Role="protect_mech" EntitySet="protect_mech" />
+            <End Role="prot_to_obj" EntitySet="prot_to_obj" />
+          </AssociationSet>
+          <AssociationSet Name="protcode" Association="Self.protcode">
+            <End Role="protect_mech" EntitySet="protect_mech" />
+            <End Role="war_to_prot" EntitySet="war_to_prot" />
+          </AssociationSet>
+          <AssociationSet Name="warning" Association="Self.warning">
+            <End Role="warnings" EntitySet="warnings" />
+            <End Role="war_to_prot" EntitySet="war_to_prot" />
+          </AssociationSet>
+          <AssociationSet Name="Weak_to_Object_Weakcode_fkey" Association="Self.Weak_to_Object_Weakcode_fkey">
+            <End Role="weakness" EntitySet="weakness" />
+            <End Role="weak_to_object" EntitySet="weak_to_object" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ProjectBaseModelContainer" CdmEntityContainer="ProjectBaseEntities">
+          <EntitySetMapping Name="bar_to_weak">
+            <EntityTypeMapping TypeName="ProjectBaseModel.bar_to_weak">
+              <MappingFragment StoreEntitySet="bar_to_weak">
+                <ScalarProperty Name="barcode" ColumnName="barcode" />
+                <ScalarProperty Name="weakcode" ColumnName="weakcode" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="barrier">
+            <EntityTypeMapping TypeName="ProjectBaseModel.barrier">
+              <MappingFragment StoreEntitySet="barrier">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="def_to_objtype">
+            <EntityTypeMapping TypeName="ProjectBaseModel.def_to_objtype">
+              <MappingFragment StoreEntitySet="def_to_objtype">
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="defcode" ColumnName="defcode" />
+                <ScalarProperty Name="paramcode" ColumnName="paramcode" />
+                <ScalarProperty Name="paramtype" ColumnName="paramtype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="defenseobj">
+            <EntityTypeMapping TypeName="ProjectBaseModel.defenseobj">
+              <MappingFragment StoreEntitySet="defenseobj">
+                <ScalarProperty Name="defcode" ColumnName="defcode" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="deftype_code" ColumnName="deftype_code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="defenseobj_types">
+            <EntityTypeMapping TypeName="ProjectBaseModel.defenseobj_types">
+              <MappingFragment StoreEntitySet="defenseobj_types">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="indust_object">
+            <EntityTypeMapping TypeName="ProjectBaseModel.indust_object">
+              <MappingFragment StoreEntitySet="indust_object">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="risk_benchmark" ColumnName="risk_benchmark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="object">
+            <EntityTypeMapping TypeName="ProjectBaseModel.object">
+              <MappingFragment StoreEntitySet="object">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="desciption" ColumnName="desciption" />
+                <ScalarProperty Name="critical_importance" ColumnName="critical_importance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prot_to_bar">
+            <EntityTypeMapping TypeName="ProjectBaseModel.prot_to_bar">
+              <MappingFragment StoreEntitySet="prot_to_bar">
+                <ScalarProperty Name="barcode" ColumnName="barcode" />
+                <ScalarProperty Name="protcode" ColumnName="protcode" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="prot_to_obj">
+            <EntityTypeMapping TypeName="ProjectBaseModel.prot_to_obj">
+              <MappingFragment StoreEntitySet="prot_to_obj">
+                <ScalarProperty Name="objcode" ColumnName="objcode" />
+                <ScalarProperty Name="protcode" ColumnName="protcode" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="protect_mech">
+            <EntityTypeMapping TypeName="ProjectBaseModel.protect_mech">
+              <MappingFragment StoreEntitySet="protect_mech">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="mech_type" ColumnName="mech_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="war_to_prot">
+            <EntityTypeMapping TypeName="ProjectBaseModel.war_to_prot">
+              <MappingFragment StoreEntitySet="war_to_prot">
+                <ScalarProperty Name="warcode" ColumnName="warcode" />
+                <ScalarProperty Name="protcode" ColumnName="protcode" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="warning_type">
+            <EntityTypeMapping TypeName="ProjectBaseModel.warning_type">
+              <MappingFragment StoreEntitySet="warning_type">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="warnings">
+            <EntityTypeMapping TypeName="ProjectBaseModel.warnings">
+              <MappingFragment StoreEntitySet="warnings">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="damage_cost" ColumnName="damage_cost" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="warning_type" ColumnName="warning_type" />
+                <ScalarProperty Name="danger_class" ColumnName="danger_class" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="weak_to_object">
+            <EntityTypeMapping TypeName="ProjectBaseModel.weak_to_object">
+              <MappingFragment StoreEntitySet="weak_to_object">
+                <ScalarProperty Name="objcode" ColumnName="objcode" />
+                <ScalarProperty Name="weakcode" ColumnName="weakcode" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="weakness">
+            <EntityTypeMapping TypeName="ProjectBaseModel.weakness">
+              <MappingFragment StoreEntitySet="weakness">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
